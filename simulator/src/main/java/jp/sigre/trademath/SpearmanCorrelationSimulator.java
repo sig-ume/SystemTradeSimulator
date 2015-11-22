@@ -19,7 +19,6 @@ public class SpearmanCorrelationSimulator {
 	static int valueType = 4; //終値
 
 	public SpearmanCorrelationSimulator() {
-		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
 	public static void main(String[] args) {
