@@ -20,7 +20,7 @@ import org.junit.Test;
  */
 public class CsvUtlisTest {
 
-	String path = "target\\1417-T_NTT.csv";
+	String path = "file\\1417-T\\1417-T_NTT.csv";
 	CsvUtils target = new CsvUtils(path);
 	/**
 	 * {@link jp.sigre.systemtradesimulator.utils.CsvUtils#makeKabuDataList()} のためのテスト・メソッド。

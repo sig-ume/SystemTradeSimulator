@@ -14,8 +14,8 @@ import org.apache.commons.math3.stat.correlation.SpearmansCorrelation;
  */
 public class SpearmanCorrelationSimulator {
 
-	static final String NTT_PATH = "target\\1417-T_NTT.csv";
-	static final String DNA_PATH = "target\\2432-T_DeNA.csv";
+	static final String NTT_PATH = "file\\1417-\\1417-T_NTT.csv";
+	static final String DNA_PATH = "file\\2432-T_DeNA.csv";
 	static int valueType = 4; //終値
 
 	public SpearmanCorrelationSimulator() {

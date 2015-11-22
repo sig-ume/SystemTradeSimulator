@@ -19,7 +19,7 @@ import org.junit.Test;
  */
 public class VHSimulatorBaseTest {
 
-	final String PATH = "target\\1417-T_NTT.csv";
+	final String PATH = "target\\\\1417-T\\\\1417-T_NTT.csv";
 	VHSimulatorBase target = new VHSimulatorBase(PATH);
 
 	/**
