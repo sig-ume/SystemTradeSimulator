@@ -80,7 +80,9 @@ public class VHSimulatorBase {
 		double buySum = 0;
 
 		for (TradeResultBean tradeResult : tradeResults) {
-			System.out.println(tradeResult.toString());
+
+			//System.out.println(tradeResult.toString());
+
 			double tempProfit = tradeResult.getSellValue() - tradeResult.getBuyValue();
 
 			buySum += tradeResult.getBuyValue();
@@ -106,8 +108,8 @@ public class VHSimulatorBase {
 							"取引数：" 	+ tradeCount  + "\t" +
 							"勝利数：" + winTradeCount + "\t" +
 							"勝率：" + winRate + "\t"
-							+"利益：" + profit + "\t" +
-							"利益率：" + profitRate) ;
+							+"利益：" + String.format("%05g", profit) + "\t" +
+							"利益率：" + String.format("%05g", profitRate)) ;
 	}
 
 
