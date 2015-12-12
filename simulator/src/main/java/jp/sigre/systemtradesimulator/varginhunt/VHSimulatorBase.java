@@ -10,7 +10,6 @@ import jp.sigre.systemtradesimulator.utils.CsvUtils;
 
 /**
  * VarginHunt（ギャップトレード）のシミュレーション
- * TODO:シミュレート対象のパラメータをコンストラクタから設定する
  * @author sigre
  *
  */
@@ -44,6 +43,7 @@ public class VHSimulatorBase {
 		//買いを探すときは0,売りを探すときは1
 		int flag = 0;
 		TradeResultBean tradeResult = new TradeResultBean();
+		tradeResults = new ArrayList<>();
 
 		for (int i = 0; i < list.size(); i++) {
 			if (flag == 0 && isBuyableDay(i)) {
@@ -56,16 +56,61 @@ public class VHSimulatorBase {
 				flag = 0;
 			}
 		}
+
 	}
 
 	/**
 	 * シミュレート結果の出力など、後処理。
 	 */
 	public void after() {
+
+		//全体日数
+		int dateCount = list.size();
+
+		//取引数
+		int tradeCount = tradeResults.size();
+
+		//勝利トレード数
+		double winTradeCount = 0;
+
+		//利益
+		double profit = 0;
+
+		//購入総額
+		double buySum = 0;
+
 		for (TradeResultBean tradeResult : tradeResults) {
 			System.out.println(tradeResult.toString());
+			double tempProfit = tradeResult.getSellValue() - tradeResult.getBuyValue();
+
+			buySum += tradeResult.getBuyValue();
+
+			//損益を加算
+			profit += tempProfit;
+
+			//勝数を加算
+			if (tempProfit > 0 ) {
+				winTradeCount++;
+			}
 		}
+
+		//勝率
+		double winRate = winTradeCount / tradeCount;
+
+
+
+		//利益率
+		double profitRate = profit / buySum;
+
+		System.out.println(	"全体日数："+ dateCount + "\t" +
+							"取引数：" 	+ tradeCount  + "\t" +
+							"勝利数：" + winTradeCount + "\t" +
+							"勝率：" + winRate + "\t"
+							+"利益：" + profit + "\t" +
+							"利益率：" + profitRate) ;
 	}
+
+
 
 	private void addAll(List<KabuDataBean> kabuList) {
 
@@ -81,6 +126,24 @@ public class VHSimulatorBase {
 
 		setRSI(RSI_KIKAN);
 	}
+
+
+	/**
+	 * gap値を取得
+	 * @return
+	 */
+	public double getGap() {
+		return gap;
+	}
+
+	/**
+	 * gap値を設定
+	 * @param gap
+	 */
+	public void setGap(double gap) {
+		this.gap = gap;
+	}
+
 
 	private void setRSI(int kikan) {
 

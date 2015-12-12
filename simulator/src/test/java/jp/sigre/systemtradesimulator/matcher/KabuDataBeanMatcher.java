@@ -84,7 +84,6 @@ public class KabuDataBeanMatcher extends TypeSafeMatcher<KabuDataBean> {
         }
     }
 
-    @Override
     public void describeTo(Description desc) {
         if (fieldName == null || expected == null) {
             desc.appendValue(expected);

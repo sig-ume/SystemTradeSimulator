@@ -19,7 +19,7 @@ import org.junit.Test;
  */
 public class VHSimulatorBaseTest {
 
-	final String PATH = "target\\\\1417-T\\\\1417-T_NTT.csv";
+	final String PATH = "file\\1417-T\\1417-T_NTT.csv";
 	VHSimulatorBase target = new VHSimulatorBase(PATH);
 
 	/**
@@ -71,9 +71,9 @@ public class VHSimulatorBaseTest {
 		target.before();
 		target.simulate();
 
-		for (AccesoriesBean acc : target.list) {
-			System.out.println(acc.toString());
-		}
+//		for (AccesoriesBean acc : target.list) {
+//			System.out.println(acc.toString());
+//		}
 
 		target.after();
 

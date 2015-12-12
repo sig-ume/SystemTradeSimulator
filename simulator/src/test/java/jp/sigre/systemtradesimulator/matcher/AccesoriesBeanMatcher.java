@@ -120,7 +120,6 @@ public class AccesoriesBeanMatcher extends TypeSafeMatcher<AccesoriesBean> {
         }
     }
 
-    @Override
     public void describeTo(Description desc) {
         if (fieldName == null || expected == null) {
             desc.appendValue(expected);
