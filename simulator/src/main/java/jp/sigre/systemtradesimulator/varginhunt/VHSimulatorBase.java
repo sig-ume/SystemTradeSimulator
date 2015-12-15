@@ -79,9 +79,16 @@ public class VHSimulatorBase {
 		//購入総額
 		double buySum = 0;
 
+		//保有日数
+		double  keepTerm = 0.0;
+
+		long maxKeepTerm = -1;
+
+		long minKeepTerm = 9999;
+
 		for (TradeResultBean tradeResult : tradeResults) {
 
-			//System.out.println(tradeResult.toString());
+			System.out.println(tradeResult.toString());
 
 			double tempProfit = tradeResult.getSellValue() - tradeResult.getBuyValue();
 
@@ -94,22 +101,34 @@ public class VHSimulatorBase {
 			if (tempProfit > 0 ) {
 				winTradeCount++;
 			}
+
+			long tempKeepTerm = (tradeResult.getSellDate().getTime() - tradeResult.getBuyDate().getTime()) / (1000 * 60 * 60 * 24);
+
+			keepTerm += tempKeepTerm;
+
+			maxKeepTerm = (tempKeepTerm > maxKeepTerm) ? tempKeepTerm : maxKeepTerm;
+			minKeepTerm = (tempKeepTerm < minKeepTerm) ? tempKeepTerm : minKeepTerm;
+
+			System.out.println(keepTerm);
 		}
 
 		//勝率
 		double winRate = winTradeCount / tradeCount;
 
-
+		keepTerm /= tradeCount;
 
 		//利益率
 		double profitRate = profit / buySum;
 
-		System.out.println(	"全体日数："+ dateCount + "\t" +
-							"取引数：" 	+ tradeCount  + "\t" +
-							"勝利数：" + winTradeCount + "\t" +
-							"勝率：" + winRate + "\t"
-							+"利益：" + String.format("%05g", profit) + "\t" +
-							"利益率：" + String.format("%05g", profitRate)) ;
+		System.out.println(	"全体日数："	+ dateCount + "\t" +
+							"取引数："		+ tradeCount  + "\t" +
+							"勝利数："		+ winTradeCount + "\t" +
+							"勝率："		+ winRate + "\t" +
+							"利益："		+ String.format("%05g", profit) + "\t" +
+							"利益率："		+ String.format("%05g", profitRate) + "\t" +
+							"保有平均期間："+ keepTerm + "\t" +
+							"保有最大期間："+ maxKeepTerm + "\t" +
+							"保有最小期間："+ minKeepTerm);
 	}
 
 
